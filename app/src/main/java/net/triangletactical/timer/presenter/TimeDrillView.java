@@ -30,4 +30,9 @@ public class TimeDrillView {
     public void onClick() {
         Crouton.showText(activity, "Start!", Style.ALERT);
     }
+
+    public void displayDrill(String duration, String parTime) {
+        txtParTime.setText(parTime);
+        txtTimer.setText(duration);
+    }
 }

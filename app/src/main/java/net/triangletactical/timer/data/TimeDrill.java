@@ -5,8 +5,8 @@ import net.triangletactical.timer.TimerApplication;
 
 public class TimeDrill extends Drill{
 
-    int parTime; //in tenths
-    int duration; //in minutes
+    public final int parTime; //in tenths
+    public final int duration; //in minutes
 
     public TimeDrill(int parTime, int duration) {
         this.parTime = parTime;
