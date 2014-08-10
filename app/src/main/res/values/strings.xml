@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Timer</string>
+    <string name="time_drill_description">Reps of %1$s for %2$d minutes</string>
+    <string name="rep_drill_description">%1$d sets of %2$d, from %3$s to %4$s</string>
+</resources>
