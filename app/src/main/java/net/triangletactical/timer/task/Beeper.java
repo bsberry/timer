@@ -47,8 +47,12 @@ public abstract class Beeper<D extends Drill, Integer, Void> extends AsyncTask<D
     protected void play(MediaPlayer player) throws InterruptedException {
         player.start();
         while(player.isPlaying()) {
-            Thread.sleep(100);
+            sleep(100);
         }
+    }
+
+    protected void sleep(long millis) throws InterruptedException {
+        Thread.sleep(millis);
     }
 
     @Override
@@ -75,5 +79,7 @@ public abstract class Beeper<D extends Drill, Integer, Void> extends AsyncTask<D
         startBeep = null;
         endBeep.release();
         endBeep = null;
+        standby.release();
+        standby = null;
     }
 }

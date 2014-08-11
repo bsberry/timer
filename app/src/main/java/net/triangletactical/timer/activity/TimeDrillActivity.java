@@ -1,6 +1,5 @@
 package net.triangletactical.timer.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import net.triangletactical.timer.R;
@@ -10,7 +9,7 @@ import net.triangletactical.timer.presenter.TimeDrillPresenter;
 import net.triangletactical.timer.presenter.TimeDrillView;
 import net.triangletactical.timer.util.BusProvider;
 
-public class TimeDrillActivity extends Activity {
+public class TimeDrillActivity extends BaseDrillActivity {
     TimeDrillPresenter presenter;
     public static final String EXTRA_DRILL = "drill";
 

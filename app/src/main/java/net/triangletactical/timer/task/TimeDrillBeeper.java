@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import net.triangletactical.timer.data.TimeDrill;
+import net.triangletactical.timer.util.BusProvider;
 
 public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
 
@@ -18,7 +19,7 @@ public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
 
         boolean firstRep = true;
         TimeDrill drill = params[0];
-        millisLeft = System.currentTimeMillis() + ( drill.duration * 60 * 1000 );
+        millisLeft = ( drill.duration * 60 * 1000 );
 
         try {
 
@@ -57,20 +58,24 @@ public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
         return null;
     }
 
-    private void sleep(long millis) throws InterruptedException {
+    @Override
+    protected void sleep(long millis) throws InterruptedException {
         int timeSlept = 0;
         while(timeSlept < millis) {
             Thread.sleep(100);
-            publishProgress(getTimeRemainingString());
+            BusProvider.post(new TimePublishedEvent(getTimeRemainingString()));
             timeSlept += 100;
             millisLeft -= 100;
         }
     }
 
     private String getTimeRemainingString() {
-        int minutes = (int) (millisLeft / 60);
-        int seconds = (int) (millisLeft % 60);
-        return String.format("%1$d:%2$2d", minutes, seconds);
+        if(millisLeft < 0) {
+            millisLeft = 0;
+        }
+        int minutes = (int) (millisLeft / 60000);
+        int seconds = (int) (millisLeft % 60000) / 1000;
+        return String.format("%1$01d:%2$02d", minutes, seconds);
     }
 
     public static class TimePublishedEvent {
