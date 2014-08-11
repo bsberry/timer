@@ -8,9 +8,10 @@ public class TimeDrill extends Drill{
     public final int parTime; //in tenths
     public final int duration; //in minutes
 
-    public TimeDrill(int parTime, int duration) {
+    public TimeDrill(int parTime, int duration, int recoveryTime) {
         this.parTime = parTime;
         this.duration = duration;
+        this.recoveryTime = recoveryTime;
     }
 
     @Override

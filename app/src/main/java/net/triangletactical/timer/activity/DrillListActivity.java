@@ -27,7 +27,7 @@ public class DrillListActivity extends Activity {
 
         List<Drill> drills = new ArrayList<Drill>(2);
         drills.add(new RepDrill(15, 5, 1, 5).setTitle("Reps drill"));
-        drills.add(new TimeDrill(20, 5).setTitle("Timed drill"));
+        drills.add(new TimeDrill(20, 5, 20).setTitle("Timed drill"));
 
         ListView listView = (ListView) findViewById(R.id.drill_list);
         DrillAdapter adapter = new DrillAdapter(this, R.layout.item_drill_list, R.id.drill_title, R.id.drill_description, drills);
