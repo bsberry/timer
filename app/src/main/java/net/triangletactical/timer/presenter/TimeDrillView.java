@@ -1,5 +1,6 @@
 package net.triangletactical.timer.presenter;
 
+import android.app.Dialog;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,6 +29,17 @@ public class TimeDrillView {
     @OnClick(R.id.start_button)
     public void onClick() {
         BusProvider.post(new StartButtonPressedEvent());
+    }
+
+    @OnClick(R.id.par_container)
+    public void onParTimeClick() {
+        new Dialog(activity).
+//        new DialogFragment().
+    }
+
+    @OnClick(R.id.time_container)
+    public void onTimeClick() {
+
     }
 
     public void displayDrill(String duration, String parTime) {

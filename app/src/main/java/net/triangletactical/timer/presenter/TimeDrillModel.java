@@ -2,6 +2,7 @@ package net.triangletactical.timer.presenter;
 
 import net.triangletactical.timer.data.TenthsFormatter;
 import net.triangletactical.timer.data.TimeDrill;
+import net.triangletactical.timer.util.TimeUtil;
 
 public class TimeDrillModel extends BaseDrillModel {
     private TimeDrill drill;
@@ -15,11 +16,11 @@ public class TimeDrillModel extends BaseDrillModel {
     }
 
     public String getDurationString() {
-        return Integer.toString(drill.duration) + "minutes";
+        return TimeUtil.getMinSecondsLeft(drill.duration * 60 * 1000);
     }
 
     public String getParTimeString() {
-        return TenthsFormatter.toSeconds(drill.parTime) + "seconds";
+        return TenthsFormatter.toSeconds(drill.parTime);
     }
 
     public int getParTimeTenths() {

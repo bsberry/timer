@@ -5,6 +5,7 @@ import android.util.Log;
 
 import net.triangletactical.timer.data.TimeDrill;
 import net.triangletactical.timer.util.BusProvider;
+import net.triangletactical.timer.util.TimeUtil;
 
 public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
 
@@ -22,7 +23,6 @@ public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
         millisLeft = ( drill.duration * 60 * 1000 );
 
         try {
-
             do {
                 while(pause){
                     Thread.sleep(1000); //Busy waiting... I know...
@@ -50,6 +50,10 @@ public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
 
 
             } while (millisLeft > (drill.duration + 2500));
+
+            while(endBeep.isPlaying()) { //Let the last beep play
+                sleep(100);
+            }
         } catch (InterruptedException ex) {
             Log.e(TAG, ex.getMessage());
         }
@@ -73,10 +77,10 @@ public class TimeDrillBeeper extends Beeper<TimeDrill, String, Void > {
         if(millisLeft < 0) {
             millisLeft = 0;
         }
-        int minutes = (int) (millisLeft / 60000);
-        int seconds = (int) (millisLeft % 60000) / 1000;
-        return String.format("%1$01d:%2$02d", minutes, seconds);
+        return TimeUtil.getMinSecondsLeft(millisLeft);
     }
+
+
 
     public static class TimePublishedEvent {
         public String time;
